@@ -1,17 +1,47 @@
+
 <ion-header>
+
   <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
+    <ion-title>和{{nickname}}聊天中</ion-title>
+    <ion-buttons end [hidden]="shopid!=0">
+      <button ion-button icon-only (click)="toShop()">
+        进入店铺
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
+
 </ion-header>
 
+
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+  <ion-refresher  *ngIf="loadMoreData" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉加载更多" refreshingSpinner="circles" refreshingText="正在加载...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ul class='chat-list'>
+
+    <li [ngClass]="{'right':(item.from==loginUid),'left':(item.from!=''&&item.from!=loginUid),'time':(item.type=='3')}" *ngFor='let item of msgList'>
+      {{item.content}}
+      <span *ngIf="item.type=='3'">{{item.send_time}}</span>
+      <img *ngIf="item.type=='2'" src="{{item.img}}" (click)="checkImg(item.img)" >
+    </li>
+  </ul>
+
 </ion-content>
+
+<ion-footer keyboard-attach [ngStyle]="{'bottom':keyboardHeight}">
+  <ion-toolbar>
+    <div class="input-container">
+      <ion-textarea rows="1"    type="text" [(ngModel)]="message" placeholder="请输入文字" ></ion-textarea>
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)='selectPhoto()'>
+        <ion-icon name="ios-image-outline"></ion-icon>
+      </button>
+      <button ion-button padding class="send-button" (click)="send();$event.stopPropagation();" [disabled]="!message">
+        发送
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

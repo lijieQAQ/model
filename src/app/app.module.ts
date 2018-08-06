@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { IonJPushModule } from 'ionic2-jpush'
 import { HttpClientUtil } from '../providers/HttpClientUtil';
 import { dateToStringPipe } from '../providers/common.pipe';
 import { MyApp } from './app.component';
@@ -17,6 +18,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { Transfer } from '@ionic-native/transfer';
+import { Keyboard } from '@ionic-native/keyboard';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,6 +33,7 @@ import { Transfer } from '@ionic-native/transfer';
   imports: [
     BrowserModule,
     HttpClientModule,
+    IonJPushModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: 'true',
       backButtonText: '',
@@ -53,6 +57,7 @@ import { Transfer } from '@ionic-native/transfer';
     Camera,
     MediaCapture,
     Transfer,
+    Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

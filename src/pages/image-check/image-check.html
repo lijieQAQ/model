@@ -1,0 +1,28 @@
+<!--
+  Generated template for the ImageCheckPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only large color="light" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="slides-box">
+    <ion-slides pager>
+      <ion-slide *ngFor="let url of imgArr">
+        <img src="{{ url }}" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
