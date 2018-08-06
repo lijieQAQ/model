@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      个人展示
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="videoContent">
+    <div class="title">视频展示</div>
+    <div class="video" (click)="mediaCapture()">
+      <ion-icon name="add"></ion-icon>
+      <div>点击上传</div>
+    </div>
+  </div>
+  <div class="imgContent">
+    <div class="title">素颜照片</div>
+    <div class="img">
+      <ion-icon name="add"></ion-icon>
+      <div>点击上传</div>
+    </div>
+  </div>
+  <div class="imgContent">
+    <div class="title">带妆照片</div>
+    <div class="img">
+      <ion-icon name="add"></ion-icon>
+      <div>点击上传</div>
+    </div>
+  </div>
+  <div class="imgContent">
+    <div class="title">全身照片</div>
+    <div class="img">
+      <ion-icon name="add"></ion-icon>
+      <div>点击上传</div>
+    </div>
+  </div>
+  <div class="imgContent" (click)="presentActionSheet()">
+    <div class="title">模卡照片</div>
+    <div class="img">
+      <ion-icon name="add"></ion-icon>
+      <div>点击上传</div>
+    </div>
+  </div>
+
+</ion-content>

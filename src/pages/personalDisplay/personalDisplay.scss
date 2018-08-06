@@ -1,0 +1,34 @@
+page-personalDisplay {
+  .title {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+  }
+  .videoContent {
+    .video {
+      width: calc(100% - 2rem);
+      height: 15rem;
+      background: #e1e1e1;
+      margin: 0 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      padding-top: 4rem;
+      .icon {
+        font-size: 3.5rem!important;
+      }
+    }
+  }
+  .imgContent {
+    .img {
+      width: 30%;
+      height: 15rem;
+      background: #e1e1e1;
+      margin: 0 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      padding-top: 4rem;
+      .icon {
+        font-size: 3.5rem!important;
+      }
+    }
+  }
+}

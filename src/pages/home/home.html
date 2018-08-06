@@ -1,17 +1,91 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <div class="headerContent">
+    <div class="selectCity">
+      <ion-select [(ngModel)]="gaming">
+        <ion-option value="nes">NES</ion-option>
+        <ion-option value="n64">Nintendo64</ion-option>
+        <ion-option value="ps">PlayStation</ion-option>
+        <ion-option value="genesis">Sega Genesis</ion-option>
+        <ion-option value="saturn">Sega Saturn</ion-option>
+        <ion-option value="snes">SNES</ion-option>
+      </ion-select>
+    </div>
+    <div class="searchContent">
+      <div>
+        <ion-icon name="ios-search"></ion-icon>
+        <input type="text" placeholder="搜索">
+      </div>
+    </div>
+    <div class="menuContent">
+      <ion-icon name="ios-keypad"></ion-icon>
+    </div>
+  </div>
+  <ion-slides pager>
+    <ion-slide  *ngFor="let carousel of carouselList">
+      <img [src]="phtotUrl + carousel.coverPhoto">
+    </ion-slide>
+  </ion-slides>
+  <div class="listContent">
+    <div class="sortList">
+      <div class="selectContent">
+        <ion-select [(ngModel)]="gaming">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </div>
+      <div class="selectContent">
+        <ion-select [(ngModel)]="gaming">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </div>
+      <div class="selectContent">
+        <ion-select [(ngModel)]="gaming">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </div>
+      <div class="selectContent">
+        <ion-select [(ngModel)]="gaming">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </div>
+    </div>
+    <ion-list>
+      <ion-item *ngFor="let activity of activityList">
+        <ion-thumbnail item-start>
+          <img [src]="phtotUrl + activity.coverPhoto">
+        </ion-thumbnail>
+        <h2>{{activity.title}}</h2>
+        <div class="itemInfo">
+          <div class="itemInfo1">
+            <div><img src="././assets/imgs/user.svg">{{activity.userNum}}</div>
+            <div><img src="././assets/imgs/date.svg">{{activity.beginDate | dateToStringPipe: 'mm/dd'}} - {{activity.endDate | dateToStringPipe: 'mm/dd'}}</div>
+            <div><img src="././assets/imgs/address.svg">{{activity.address}}</div>
+          </div>
+          <div class="itemInfo2">
+            <div><img src="././assets/imgs/date.svg">{{activity.minPricePoint}}-{{activity.maxPricePoint}}/天</div>
+            <div><img src="././assets/imgs/eys.svg">{{activity.lookNum}}</div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
