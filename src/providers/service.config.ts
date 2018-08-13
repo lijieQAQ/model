@@ -17,4 +17,5 @@ export class ServiceConfig {
   // 上传文件
   public static UPLOAD_IMAGE = "backManagement/uploadPhoto"// 上传图片
   public static UPLOAD_VIDEO = "backManagement/uploadVideo"// 上传视频
+  public static CHAT_ADDCHAT = "backManagement/uploadVideo"// 上传视频
 }

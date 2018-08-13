@@ -155,7 +155,7 @@ export class MessagePage extends BasePage {
     console.log(JSON.stringify(message));
     this.msgList.push(message);
     var self = this;
-    /*this.httpclient.postNotLoading(ServiceConfig.CHAT_ADDCHAT, {
+    this.httpclient.postNotLoading(ServiceConfig.CHAT_ADDCHAT, {
       "content": message.content,
       "img": message.img,
       "to": message.to
@@ -164,7 +164,7 @@ export class MessagePage extends BasePage {
       self.ref.detectChanges();
       if (data.status == 1) {
       }
-    });*/
+    });
 
     setTimeout(function () {
       self.content.scrollToBottom();
