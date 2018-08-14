@@ -151,14 +151,13 @@ export class MessagePage extends BasePage {
   }
 
   sendMessage(message: ChatPageModel) {
-
-    console.log(JSON.stringify(message));
     this.msgList.push(message);
     var self = this;
     this.httpclient.postNotLoading(ServiceConfig.CHAT_ADDCHAT, {
-      "content": message.content,
-      "img": message.img,
-      "to": message.to
+      speaker: '1',
+      user1: '2',
+      user2: '2',
+      message: message.content,
     }, function (data) {
       self.message = null;
       self.ref.detectChanges();

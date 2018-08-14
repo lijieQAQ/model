@@ -12,6 +12,10 @@ import {BasePage} from '../base/base-page';
 export class PersonalDisplayPage extends BasePage{
   image_url_list: Array<string> = [];
   video_url_list: Array<string> = [];
+  noMakeUp: Array<string> = [];
+  makeUp: Array<string> = [];
+  body: Array<string> = [];
+  modelCard: Array<string> = [];
   constructor(public navCtrl: NavController,
               private camera: Camera,
               private http: HttpClientUtil,
@@ -20,8 +24,36 @@ export class PersonalDisplayPage extends BasePage{
               private capture: MediaCapture) {
     super();
   }
+  ionViewDidEnter() {
+    this.getStaffPic();
+  }
+  getStaffPic() {
+    let self = this;
+    this.http.post(ServiceConfig.FINDBYSTAFFID, {
+      staffId: 1
+    }, data => {
+      console.log(data);
+      if(data.status == 'success') {
+      }
+    })
+  }
+  // 提交
+  submit() {
+    let self = this;
+    this.http.post(ServiceConfig.SAVEANDUPDATE, {
+      staffId: 1,
+      videoPath: this.video_url_list.toString(),
+      makeUp: this.makeUp.toString(),
+      noMakeUp: this.noMakeUp.toString(),
+      body: this.body.toString(),
+      modelCard: this.modelCard.toString(),
+    }, function(data){
+      if(data.status == 'success') {
+      }
+    })
+  }
   // 拍照或视频
-  presentActionSheet() {
+  presentActionSheet(type) {
     let self = this;
     let actionSheet = this.actionSheetCtrl.create({
       title: '请选择',
@@ -29,12 +61,12 @@ export class PersonalDisplayPage extends BasePage{
         {
           text: '相册',
           handler: () => {
-            self.takePhotos(0);
+            self.takePhotos(0, type);
           }
         },{
           text: '拍照',
           handler: () => {
-            self.takePhotos(1);
+            self.takePhotos(1, type);
           }
         },{
           text: '取消',
@@ -47,7 +79,7 @@ export class PersonalDisplayPage extends BasePage{
     actionSheet.present();
   }
 // 拍照
-  takePhotos(status) {
+  takePhotos(status, type) {
     let self = this;
     const options: CameraOptions = {
       quality: 50,
@@ -60,7 +92,7 @@ export class PersonalDisplayPage extends BasePage{
     }
     this.camera.getPicture(options).then((filePath) => {
       console.log(filePath);
-      self.updateFile(filePath, 0);
+      self.updateFile(filePath, 0, type);
     }, (err) => {
       console.error(err);
     });
@@ -75,7 +107,7 @@ export class PersonalDisplayPage extends BasePage{
         (data: MediaFile[]) => {
           let filePath = data[0].fullPath;
           console.log(data,filePath);
-          self.updateFile(filePath, 1);
+          self.updateFile(filePath, 1, '');
         },
         (err: CaptureError) => {
           console.error(err);
@@ -97,13 +129,21 @@ export class PersonalDisplayPage extends BasePage{
 
   // request
   // 上传图片和视频
-  updateFile(filePath, mediaType) {
+  updateFile(filePath, mediaType, type) {
     // mediaType 0照片，1视频
     let self = this;
-    this.http.uploadFile(mediaType, filePath,function(data) {
+    this.http.uploadFile(mediaType, filePath, data => {
       if (data["status"] == 1) {
         if (mediaType == 0) {
-          self.image_url_list.push(data["data"]["info"]["url"]);
+          if(type === 'nomakeup') {
+            self.noMakeUp.push(data["data"]["info"]["url"]);
+          } else if(type === 'makeup'){
+            self.makeUp.push(data["data"]["info"]["url"]);
+          } else if(type === 'body'){
+            self.body.push(data["data"]["info"]["url"]);
+          } else {
+            self.modelCard.push(data["data"]["info"]["url"]);
+          }
         } else {
           self.video_url_list.push(data["data"]["info"]["url"]);
         }

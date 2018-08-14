@@ -3,6 +3,11 @@
     <ion-title>
       个人展示
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="submit()">
+        发布
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,26 +21,26 @@
   </div>
   <div class="imgContent">
     <div class="title">素颜照片</div>
-    <div class="img">
+    <div class="img" (click)="presentActionSheet('nomakeup')">
       <ion-icon name="add"></ion-icon>
       <div>点击上传</div>
     </div>
   </div>
-  <div class="imgContent">
+  <div class="imgContent" (click)="presentActionSheet('makeup')">
     <div class="title">带妆照片</div>
     <div class="img">
       <ion-icon name="add"></ion-icon>
       <div>点击上传</div>
     </div>
   </div>
-  <div class="imgContent">
+  <div class="imgContent" (click)="presentActionSheet('body')">
     <div class="title">全身照片</div>
     <div class="img">
       <ion-icon name="add"></ion-icon>
       <div>点击上传</div>
     </div>
   </div>
-  <div class="imgContent" (click)="presentActionSheet()">
+  <div class="imgContent" (click)="presentActionSheet('card')">
     <div class="title">模卡照片</div>
     <div class="img">
       <ion-icon name="add"></ion-icon>
