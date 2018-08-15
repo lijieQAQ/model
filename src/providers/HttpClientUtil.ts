@@ -26,8 +26,8 @@ export class HttpClientUtil extends BasePage {
     }
     console.log("请求地址:" + url);
     console.log("参数:"+JSON.stringify(paramObj));
-     let headers = new HttpHeaders({'Content-Type': 'application/json;charset=utf-8'});
-     return this.http.post(url, paramObj, {headers: headers}).catch(this.handleError).subscribe(data => {
+     let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'});
+     return this.http.post(url, this.toBodyString(paramObj), {headers: headers}).catch(this.handleError).subscribe(data => {
        this.stopLoading();
       cb(data);
     });
@@ -39,8 +39,8 @@ export class HttpClientUtil extends BasePage {
     }
     console.log("请求地址:" + url);
     console.log("参数:"+JSON.stringify(paramObj));
-     let headers = new HttpHeaders({'Content-Type': 'application/json;charset=utf-8'});
-     return this.http.post(url, paramObj, {headers: headers}).catch(this.handleError).subscribe(data => {
+     let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'});
+     return this.http.post(url, this.toBodyString(paramObj), {headers: headers}).catch(this.handleError).subscribe(data => {
       cb(data);
     });
    }
@@ -59,7 +59,7 @@ export class HttpClientUtil extends BasePage {
         httpParams.set(key, params[key])
       }
     }
-    let headers = new HttpHeaders({'Content-Type': 'application/json;charset=utf-8'});
+    let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'});
     let options = { params: httpParams, headers: headers };
     return this.http.get(url, options).catch(this.handleError).subscribe(data => {
       this.stopLoading();
@@ -80,7 +80,7 @@ export class HttpClientUtil extends BasePage {
         httpParams.set(key, params[key])
       }
     }
-    let headers = new HttpHeaders({'Content-Type': 'application/json;charset=utf-8'});
+    let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'});
     let options = { params: httpParams, headers: headers };
     return this.http.get(url, options).catch(this.handleError).subscribe(data => {
       cb(data);

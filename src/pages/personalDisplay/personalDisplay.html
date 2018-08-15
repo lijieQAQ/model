@@ -14,6 +14,11 @@
 <ion-content>
   <div class="videoContent">
     <div class="title">视频展示</div>
+    <div class="imgs">
+      <div class="updateImg" *ngFor="let img of video_url_list">
+        <img src="{{url + img}}">
+      </div>
+    </div>
     <div class="video" (click)="mediaCapture()">
       <ion-icon name="add"></ion-icon>
       <div>点击上传</div>
@@ -21,28 +26,48 @@
   </div>
   <div class="imgContent">
     <div class="title">素颜照片</div>
+    <div class="imgs">
+      <div class="updateImg" *ngFor="let img of noMakeUp">
+        <img src="{{url + img}}">
+      </div>
+    </div>
     <div class="img" (click)="presentActionSheet('nomakeup')">
       <ion-icon name="add"></ion-icon>
       <div>点击上传</div>
     </div>
   </div>
-  <div class="imgContent" (click)="presentActionSheet('makeup')">
+  <div class="imgContent">
     <div class="title">带妆照片</div>
-    <div class="img">
+    <div class="imgs">
+      <div class="updateImg" *ngFor="let img of makeUp">
+        <img src="{{url + img}}">
+      </div>
+    </div>
+    <div class="img"  (click)="presentActionSheet('makeup')">
       <ion-icon name="add"></ion-icon>
       <div>点击上传</div>
     </div>
   </div>
-  <div class="imgContent" (click)="presentActionSheet('body')">
+  <div class="imgContent">
     <div class="title">全身照片</div>
-    <div class="img">
+    <div class="imgs">
+      <div class="updateImg" *ngFor="let img of body">
+        <img src="{{url + img}}">
+      </div>
+    </div>
+    <div class="img" (click)="presentActionSheet('body')">
       <ion-icon name="add"></ion-icon>
       <div>点击上传</div>
     </div>
   </div>
-  <div class="imgContent" (click)="presentActionSheet('card')">
+  <div class="imgContent">
     <div class="title">模卡照片</div>
-    <div class="img">
+    <div class="imgs">
+      <div class="updateImg" *ngFor="let img of modelCard">
+        <img src="{{url + img}}">
+      </div>
+    </div>
+    <div class="img" (click)="presentActionSheet('card')">
       <ion-icon name="add"></ion-icon>
       <div>点击上传</div>
     </div>

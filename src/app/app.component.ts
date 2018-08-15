@@ -24,35 +24,25 @@ export class MyApp {
            * 获取ID
            */
           this.jpush.setAlias('123').then((res) => {
-            alert("设置别名成功" + '123' + JSON.stringify(res));
           }).catch((err) => {
-            alert(JSON.stringify(err));
           });
         })
         .catch(err => alert(JSON.stringify(err)))
       let openNotification = this.jpush.openNotification()
         .subscribe( res => {
-          alert(JSON.stringify(res));
-          alert('收到点击通知事件')
         })
 
 
       let receiveNotification = this.jpush.receiveNotification()
         .subscribe( res => {
-          alert(JSON.stringify(res));
-          alert('收到通知')
         })
 
       let receiveMessage = this.jpush.receiveMessage()
         .subscribe( res => {
-          alert(JSON.stringify(res));
-          alert('收到自定义消息')
         })
 
       let backgroundNotification = this.jpush.backgroundNotification()
         .subscribe( res => {
-          alert(JSON.stringify(res));
-          alert('收到后台通知')
         })
 
       statusBar.styleDefault();

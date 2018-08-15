@@ -4,6 +4,18 @@ page-personalDisplay {
     font-size: 1.5rem;
   }
   .videoContent {
+    .imgs {
+      display: flex;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+    .updateImg {
+      width: calc(100% - 2rem);
+      height: 15rem;
+      margin-right: 3%;
+      padding-top: 1rem;
+      display: flex;
+    }
     .video {
       width: calc(100% - 2rem);
       height: 15rem;
@@ -29,6 +41,18 @@ page-personalDisplay {
       .icon {
         font-size: 3.5rem!important;
       }
+    }
+    .imgs {
+      display: flex;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+    .updateImg {
+      width: 30%;
+      height: 15rem;
+      margin-right: 3%;
+      padding-top: 1rem;
+      display: flex;
     }
   }
 }

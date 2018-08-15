@@ -7,7 +7,7 @@ export class ServiceConfig {
     public static getUrl() {
         if (this.ISDEBUG) {
             //测试环境URL
-            return "http://localhost:8081/";
+            return "http://192.168.1.48:8081/";
         } else {
             //生产环境URL
             return "http://222.223.193.205:28084/";

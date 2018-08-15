@@ -16,6 +16,8 @@ export class PersonalDisplayPage extends BasePage{
   makeUp: Array<string> = [];
   body: Array<string> = [];
   modelCard: Array<string> = [];
+  url: string = '';
+  id: number;
   constructor(public navCtrl: NavController,
               private camera: Camera,
               private http: HttpClientUtil,
@@ -23,6 +25,7 @@ export class PersonalDisplayPage extends BasePage{
               private actionSheetCtrl: ActionSheetController,
               private capture: MediaCapture) {
     super();
+    this.url = ServiceConfig.getUrl();
   }
   ionViewDidEnter() {
     this.getStaffPic();
@@ -34,6 +37,17 @@ export class PersonalDisplayPage extends BasePage{
     }, data => {
       console.log(data);
       if(data.status == 'success') {
+        if(data.data.videoPath != '')
+        this.video_url_list = data.data.videoPath.split(',');
+        if(data.data.makeUp != '')
+        this.makeUp = data.data.makeUp.split(',');
+        if(data.data.noMakeUp != '')
+        this.noMakeUp = data.data.noMakeUp.split(',');
+        if(data.data.body != '')
+        this.body = data.data.body.split(',');
+        if(data.data.modelCard != '')
+        this.modelCard = data.data.modelCard.split(',');
+        this.id = data.data.id;
       }
     })
   }
@@ -42,6 +56,7 @@ export class PersonalDisplayPage extends BasePage{
     let self = this;
     this.http.post(ServiceConfig.SAVEANDUPDATE, {
       staffId: 1,
+      id: this.id,
       videoPath: this.video_url_list.toString(),
       makeUp: this.makeUp.toString(),
       noMakeUp: this.noMakeUp.toString(),
@@ -133,19 +148,19 @@ export class PersonalDisplayPage extends BasePage{
     // mediaType 0照片，1视频
     let self = this;
     this.http.uploadFile(mediaType, filePath, data => {
-      if (data["status"] == 1) {
+      if (data["status"] == 'success') {
         if (mediaType == 0) {
           if(type === 'nomakeup') {
-            self.noMakeUp.push(data["data"]["info"]["url"]);
+            self.noMakeUp.push(data["data"]);
           } else if(type === 'makeup'){
-            self.makeUp.push(data["data"]["info"]["url"]);
+            self.makeUp.push(data["data"]);
           } else if(type === 'body'){
-            self.body.push(data["data"]["info"]["url"]);
+            self.body.push(data["data"]);
           } else {
-            self.modelCard.push(data["data"]["info"]["url"]);
+            self.modelCard.push(data["data"]);
           }
         } else {
-          self.video_url_list.push(data["data"]["info"]["url"]);
+          self.video_url_list.push(data["data"]);
         }
       } else {
         self.showToastText(self.toastCtrl, data["info"]);
