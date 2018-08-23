@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 
 import { PersonalDisplayPage } from '../pages/personalDisplay/personalDisplay';
 import { MessagePage } from '../pages/message/message';
+import { MessageDetailPage } from '../pages/messageDetail/messageDetail';
 import { HomePage } from '../pages/home/home';
 import { MinePage } from '../pages/mine/mine';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -25,6 +26,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     MyApp,
     PersonalDisplayPage,
     MessagePage,
+    MessageDetailPage,
     HomePage,
     MinePage,
     dateToStringPipe,
@@ -46,6 +48,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     MyApp,
     PersonalDisplayPage,
     MessagePage,
+    MessageDetailPage,
     HomePage,
     MinePage,
     TabsPage

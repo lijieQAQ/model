@@ -18,6 +18,8 @@ export class ServiceConfig {
   public static UPLOAD_IMAGE = "backManagement/uploadPhoto"// 上传图片
   public static UPLOAD_VIDEO = "backManagement/uploadVideo"// 上传视频
   public static CHAT_ADDCHAT = "message/send"// 发消息
+  public static GETMSGLIST = "message/getMsgList"// 获取消息
+  public static GETMSG = "message/getMsg"// 获取消息
   public static FINDBYSTAFFID = "leader/findByStaffId"// 获取模特照片
   public static SAVEANDUPDATE = "leader/saveAndUpdate"// 发布
 }
