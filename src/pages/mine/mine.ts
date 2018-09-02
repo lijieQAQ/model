@@ -8,15 +8,21 @@ import{ActivityTakePartInPage} from '../activity-take-part-in/activity-take-part
 import{ActivityEvaluatePage} from '../activity-evaluate/activity-evaluate';
 import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config';
+import { WechatPlugin } from '../../providers/wechat.plugin';
 
 @Component({
   selector: 'page-mine',
   templateUrl: 'mine.html'
 })
 export class MinePage {
-  
+
   constructor(public navCtrl: NavController) {
-      
+    WechatPlugin.isInstalled().then( (data)=> {
+      alert(JSON.stringify(data));
+      WechatPlugin.share().then( (data)=> {
+        alert(JSON.stringify(data));
+      });
+    });
   }
   goToPage(){
      this.navCtrl.push(PersonInformationPage);

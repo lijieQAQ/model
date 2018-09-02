@@ -90,4 +90,7 @@
     <allow-navigation href="http://192.168.1.48:8101" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.0.0" />
+    <plugin name="cordova-plugin-wechatv2" spec="~2.1.3">
+        <variable name="WECHATAPPID" value="wx8dffad2bbf33aa5b" />
+    </plugin>
 </widget>

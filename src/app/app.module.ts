@@ -20,7 +20,8 @@ import { ActivityEvaluatePage } from '../pages/activity-evaluate/activity-evalua
 import { ActivityApplyPage } from '../pages/activity-apply/activity-apply';
 import { ActivityTakePartInPage } from '../pages/activity-take-part-in/activity-take-part-in';
 import { LoginPage } from '../pages/login/login';
-import {RegisterPage} from "../pages/register/register"
+import { RegisterPage } from "../pages/register/register"
+import { MySelectComponent } from "../components/my-select/my-select"
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,7 +30,8 @@ import { MediaCapture } from '@ionic-native/media-capture';
 import { Transfer } from '@ionic-native/transfer';
 import { Keyboard } from '@ionic-native/keyboard';
 import { IonicStorageModule } from '@ionic/storage'
-
+import { JPush } from '@jiguang-ionic/jpush';
+import { WechatPlugin } from '../providers/wechat.plugin';
 @NgModule({
   declarations: [
     MyApp,
@@ -47,6 +49,7 @@ import { IonicStorageModule } from '@ionic/storage'
     ActivityEvaluatePage,
     ActivityApplyPage,
     ActivityTakePartInPage,
+    MySelectComponent,
     RegisterPage
   ],
   imports: [
@@ -77,6 +80,7 @@ import { IonicStorageModule } from '@ionic/storage'
     ActivityEvaluatePage,
     ActivityApplyPage,
     ActivityTakePartInPage,
+    MySelectComponent,
     RegisterPage
   ],
   providers: [
@@ -87,6 +91,8 @@ import { IonicStorageModule } from '@ionic/storage'
     MediaCapture,
     Transfer,
     Keyboard,
+    WechatPlugin,
+    JPush,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

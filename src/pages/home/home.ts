@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, PopoverController } from 'ionic-angular';
 import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config';
+import { MySelectComponent  } from '../../components/my-select/my-select';
 
 @Component({
   selector: 'page-home',
@@ -13,12 +14,21 @@ export class HomePage {
   activityList = [];
   phtotUrl: string = '';
   constructor(public navCtrl: NavController,
-              public http: HttpClientUtil) {
+                public http: HttpClientUtil,
+                public popoverCtrl: PopoverController) {
     this.phtotUrl = ServiceConfig.getUrl();
   }
   ionViewDidEnter() {
     this.getCarouselList();
     this.getActivityList();
+  }
+  open($event) {
+    const popover = this.popoverCtrl.create(MySelectComponent, {}, {
+      cssClass: 'my-select-popover',
+    });
+    popover.present({
+      ev:$event
+    });
   }
   getCarouselList() {
     let self = this;

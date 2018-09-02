@@ -14,3 +14,10 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.my-select-popover {
+  .popover-content {
+    width: 100%;
+    left: 0!important;
+    border-radius:0!important;
+  }
+}

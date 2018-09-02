@@ -17,17 +17,6 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.jpush.init()
-        .then(res => {
-          alert(JSON.stringify(res));
-          /**
-           * 获取ID
-           */
-          this.jpush.setAlias('123').then((res) => {
-          }).catch((err) => {
-          });
-        })
-        .catch(err => alert(JSON.stringify(err)))
       let openNotification = this.jpush.openNotification()
         .subscribe( res => {
         })

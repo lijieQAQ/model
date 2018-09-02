@@ -70,6 +70,9 @@
             "cordova-plugin-whitelist": {},
             "jpush-phonegap-plugin": {
                 "APP_KEY": "6c98d45aac330b9fda9cce4a"
+            },
+            "cordova-plugin-wechatv2": {
+                "WECHATAPPID": "wx8dffad2bbf33aa5b"
             }
         },
         "platforms": [

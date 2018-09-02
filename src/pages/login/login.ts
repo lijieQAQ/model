@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
-import { HttpClientUtil } from '../../providers/HttpClientUtil';
-import { BasePage } from "../base/base-page";
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ServiceConfig } from '../../providers/service.config'
-import { Storage } from '@ionic/storage';
-import{TabsPage} from '../tabs/tabs'
+import {Component} from '@angular/core';
+import {NavController, ToastController} from 'ionic-angular';
+import {HttpClientUtil} from '../../providers/HttpClientUtil';
+import {BasePage} from "../base/base-page";
+import {FormBuilder, Validators, FormGroup} from '@angular/forms';
+import {ServiceConfig} from '../../providers/service.config'
+import {Storage} from '@ionic/storage';
+import {TabsPage} from '../tabs/tabs'
 import {RegisterPage} from "../register/register"
-
+import { JPush } from '@jiguang-ionic/jpush';
 
 @Component({
   selector: 'page-login',
@@ -18,15 +18,17 @@ export class LoginPage extends BasePage {
   loginForm: FormGroup;
   mobile: any;
   password: any;
+
   constructor(public navCtrl: NavController,
-               public formBuilder: FormBuilder, 
-               public http: HttpClientUtil,
-               private storage: Storage,
-               public toastCtrl: ToastController) {
+              public formBuilder: FormBuilder,
+              public http: HttpClientUtil,
+              private storage: Storage,
+              private jpush: JPush,
+              public toastCtrl: ToastController) {
     super();
     let self = this;
-    this.storage.get('user').then(e=>{
-      if(e){
+    this.storage.get('user').then(e => {
+      if (e) {
         self.navCtrl.push(TabsPage);
         return;
       }
@@ -42,9 +44,19 @@ export class LoginPage extends BasePage {
 
   login(value) {
     let self = this;
-    this.http.postNotLoading(ServiceConfig.LOGIN, { mobile: value.mobile, password: value.password }, function (data) {
+    this.http.postNotLoading(ServiceConfig.LOGIN, {mobile: value.mobile, password: value.password}, function (data) {
       if (data != null) {
-        self.storage.set('user', data );
+        self.storage.set('user', data);
+        this.jpush.init()
+          .then(res => {
+            this.jpush.setAlias(data.mobile)
+              .then((res) => {
+                console.log(res);
+            }).catch((err) => {
+              console.log(err);
+            });
+          })
+          .catch(err => alert(JSON.stringify(err)))
         self.navCtrl.push(TabsPage);
       } else {
         self.showToastText(self.toastCtrl, '账户密码错误');
@@ -55,5 +67,5 @@ export class LoginPage extends BasePage {
   pushRegisterPage() {
     this.navCtrl.push(RegisterPage);
   }
-  
+
 }
