@@ -4,42 +4,41 @@
     <img src="././assets/imgs/logo.png">
     <div class="name">111</div>
     <div class="info">
-      <span>舞台号: 1111</span>
       <span>注册时间: 1111</span>
     </div>
   </div>
   <ion-grid>
     <ion-row>
-      <ion-col col-4>
-        <img src="././assets/imgs/logo.png">
+      <ion-col (click)="goToApplyPage()" col-4>
+        <img src="././assets/imgs/apply.png">
         <div>已报名</div>
       </ion-col>
-      <ion-col col-4>
-        <img src="././assets/imgs/logo.png">
+      <ion-col col-4 (click)="goToTakePartInPage()">
+        <img src="././assets/imgs/TakePartIn.png">
         <div>待参加</div>
       </ion-col>
-      <ion-col col-4>
-        <img src="././assets/imgs/logo.png">
+      <ion-col col-4 (click)="goToEvaluatePage()">
+        <img src="././assets/imgs/evaluate.png">
         <div>待评价</div>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-list>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="././assets/imgs/logo.png">
+    <ion-item (click)="goToPage()">
+      <ion-avatar  item-start>
+        <img src="././assets/imgs/person.png">
       </ion-avatar>
       个人信息
     </ion-item>
-    <ion-item>
+    <ion-item (click)="goToCollectionPage()">
       <ion-avatar item-start>
-        <img src="././assets/imgs/logo.png">
+        <img src="././assets/imgs/collection.png">
       </ion-avatar>
       活动收藏
     </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="././assets/imgs/logo.png">
+    <ion-item (click)="goToParticipatePage()">
+      <ion-avatar item-start >
+        <img src="././assets/imgs/participate.png">
       </ion-avatar>
       参与记录
     </ion-item>

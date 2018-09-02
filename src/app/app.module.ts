@@ -13,6 +13,14 @@ import { MessageDetailPage } from '../pages/messageDetail/messageDetail';
 import { HomePage } from '../pages/home/home';
 import { MinePage } from '../pages/mine/mine';
 import { TabsPage } from '../pages/tabs/tabs';
+import { PersonInformationPage } from '../pages/person-information/person-information';
+import { ActivityCollectionPage } from '../pages/activity-collection/activity-collection';
+import { ActivityParticipatePage }from '../pages/activity-participate/activity-participate';
+import { ActivityEvaluatePage } from '../pages/activity-evaluate/activity-evaluate';
+import { ActivityApplyPage } from '../pages/activity-apply/activity-apply';
+import { ActivityTakePartInPage } from '../pages/activity-take-part-in/activity-take-part-in';
+import { LoginPage } from '../pages/login/login';
+import {RegisterPage} from "../pages/register/register"
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +28,7 @@ import { Camera } from '@ionic-native/camera';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { Transfer } from '@ionic-native/transfer';
 import { Keyboard } from '@ionic-native/keyboard';
+import { IonicStorageModule } from '@ionic/storage'
 
 @NgModule({
   declarations: [
@@ -30,7 +39,15 @@ import { Keyboard } from '@ionic-native/keyboard';
     HomePage,
     MinePage,
     dateToStringPipe,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    PersonInformationPage,
+    ActivityCollectionPage,
+    ActivityParticipatePage,
+    ActivityEvaluatePage,
+    ActivityApplyPage,
+    ActivityTakePartInPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +58,8 @@ import { Keyboard } from '@ionic-native/keyboard';
       backButtonText: '',
       iconMode: 'ios',
       mode: 'ios',
-    })
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,7 +69,15 @@ import { Keyboard } from '@ionic-native/keyboard';
     MessageDetailPage,
     HomePage,
     MinePage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    PersonInformationPage,
+    ActivityCollectionPage,
+    ActivityParticipatePage,
+    ActivityEvaluatePage,
+    ActivityApplyPage,
+    ActivityTakePartInPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

@@ -46,8 +46,10 @@
         "ionic-angular": "3.9.2",
         "ionic2-jpush": "^0.1.1",
         "ionicons": "3.0.0",
+        "jpush": "^0.3.2",
         "jpush-phonegap-plugin": "^3.4.3",
         "rxjs": "5.5.11",
+        "storage": "^0.2.0",
         "sw-toolbox": "3.6.0",
         "zone.js": "0.8.26"
     },
