@@ -27,37 +27,39 @@
   </ion-slides>
   <div class="listContent">
     <div class="sortList">
-      <div class="selectContent" (click)="open($event)">
-        <span>综合排序</span><ion-icon name="ios-arrow-down-outline"></ion-icon>
+      <div class="selectContent" (click)="presentActionSheetType()">
+        <span>分类</span><ion-icon name="ios-arrow-down-outline"></ion-icon>
       </div>
-      <div class="selectContent" (click)="open($event)">
-        <span>综合排序</span><ion-icon name="ios-arrow-down-outline"></ion-icon>
+      <div class="selectContent" (click)="presentActionSheetDate()">
+        <span>时间</span><ion-icon name="ios-arrow-down-outline"></ion-icon>
       </div>
-      <div class="selectContent" (click)="open($event)">
-        <span>综合排序</span><ion-icon name="ios-arrow-down-outline"></ion-icon>
+      <div class="selectContent" (click)="presentActionPrice()">
+        <span>价格</span><ion-icon name="ios-arrow-down-outline"></ion-icon>
       </div>
-      <div class="selectContent" (click)="open($event)">
-        <span>综合排序</span><ion-icon name="ios-arrow-down-outline"></ion-icon>
+      <div class="selectContent" (click)="presentActionSheetOrderBy()">
+        <span>排序</span><ion-icon name="ios-arrow-down-outline"></ion-icon>
       </div>
     </div>
     <ion-list>
-      <ion-item *ngFor="let activity of activityList">
-        <ion-thumbnail item-start>
-          <img [src]="phtotUrl + activity.coverPhoto">
-        </ion-thumbnail>
-        <h2>{{activity.title}}</h2>
-        <div class="itemInfo">
-          <div class="itemInfo1">
-            <div><img src="././assets/imgs/user.svg">{{activity.userNum}}</div>
-            <div><img src="././assets/imgs/date.svg">{{activity.beginDate | dateToStringPipe: 'mm/dd'}} - {{activity.endDate | dateToStringPipe: 'mm/dd'}}</div>
-            <div><img src="././assets/imgs/address.svg">{{activity.address}}</div>
+      <ng-container *ngFor="let activity of activityList | activityListPipe : date : price | activityListSortPipe : orderByType">
+        <ion-item *ngIf="active_type == '' || activity.type == active_type">
+          <ion-thumbnail item-start>
+            <img [src]="phtotUrl + activity.coverPhoto">
+          </ion-thumbnail>
+          <h2>{{activity.title}}</h2>
+          <div class="itemInfo">
+            <div class="itemInfo1">
+              <div><img src="././assets/imgs/user.svg">{{activity.userNum}}</div>
+              <div><img src="././assets/imgs/date.svg">{{activity.beginDate | dateToStringPipe: 'mm/dd'}} - {{activity.endDate | dateToStringPipe: 'mm/dd'}}</div>
+              <div><img src="././assets/imgs/address.svg">{{activity.address}}</div>
+            </div>
+            <div class="itemInfo2">
+              <div><img src="././assets/imgs/date.svg">{{activity.minPricePoint}}-{{activity.maxPricePoint}}/天</div>
+              <div><img src="././assets/imgs/eys.svg">{{activity.lookNum}}</div>
+            </div>
           </div>
-          <div class="itemInfo2">
-            <div><img src="././assets/imgs/date.svg">{{activity.minPricePoint}}-{{activity.maxPricePoint}}/天</div>
-            <div><img src="././assets/imgs/eys.svg">{{activity.lookNum}}</div>
-          </div>
-        </div>
-      </ion-item>
+        </ion-item>
+      </ng-container>
     </ion-list>
   </div>
 </ion-content>

@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { IonJPushModule } from 'ionic2-jpush'
 import { HttpClientUtil } from '../providers/HttpClientUtil';
-import { dateToStringPipe } from '../providers/common.pipe';
+import { dateToStringPipe, activityListPipe, activityListSortPipe } from '../providers/common.pipe';
 import { MyApp } from './app.component';
 
 import { PersonalDisplayPage } from '../pages/personalDisplay/personalDisplay';
@@ -41,6 +41,8 @@ import { WechatPlugin } from '../providers/wechat.plugin';
     HomePage,
     MinePage,
     dateToStringPipe,
+    activityListPipe,
+    activityListSortPipe,
     TabsPage,
     LoginPage,
     PersonInformationPage,
