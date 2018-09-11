@@ -49,7 +49,7 @@ export class LoginPage extends BasePage {
         self.storage.set('user', data);
         this.jpush.init()
           .then(res => {
-            this.jpush.setAlias(data.mobile)
+            this.jpush.setAlias(data.id)
               .then((res) => {
                 console.log(res);
             }).catch((err) => {
