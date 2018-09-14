@@ -11,7 +11,6 @@ import { BasePage } from "../base/base-page";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-activity-detail',
   templateUrl: 'activity-detail.html',

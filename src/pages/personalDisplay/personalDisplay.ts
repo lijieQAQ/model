@@ -5,6 +5,9 @@ import { ServiceConfig } from '../../providers/service.config';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions, CaptureVideoOptions } from '@ionic-native/media-capture';
 import {BasePage} from '../base/base-page';
+import {LoginPage} from "../login/login";
+import {Storage} from '@ionic/storage';
+
 @Component({
   selector: 'page-personalDisplay',
   templateUrl: 'personalDisplay.html'
@@ -18,9 +21,11 @@ export class PersonalDisplayPage extends BasePage{
   modelCard: Array<string> = [];
   url: string = '';
   id: number;
+  user: any;
   constructor(public navCtrl: NavController,
               private camera: Camera,
               private http: HttpClientUtil,
+              private storage: Storage,
               private toastCtrl: ToastController,
               private actionSheetCtrl: ActionSheetController,
               private capture: MediaCapture) {
@@ -28,12 +33,19 @@ export class PersonalDisplayPage extends BasePage{
     this.url = ServiceConfig.getUrl();
   }
   ionViewDidEnter() {
-    this.getStaffPic();
+    this.storage.get('user').then(e => {
+      if (e) {
+        this.user = e;
+        this.getStaffPic;
+      } else {
+        this.navCtrl.push(LoginPage);
+      }
+    })
   }
   getStaffPic() {
     let self = this;
     this.http.post(ServiceConfig.FINDBYSTAFFID, {
-      staffId: 1
+      staffId: this.user.id
     }, data => {
       console.log(data);
       if(data.status == 'success') {

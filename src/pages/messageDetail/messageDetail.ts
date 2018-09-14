@@ -48,7 +48,7 @@ export class MessageDetailPage extends BasePage {
         let from = res.extras.from;
         let img = res.extras.img;
         let content = res.extras.content;
-        let message = new ChatPageModel(content, img ? "1" : "2", "", img, from, this.loginUid);
+        let message = new ChatPageModel(content, img ? "1" : "2", "", img, from, this.user.id);
         this.msgList.push(message);
         this.ref.detectChanges();
         setTimeout(function () {
@@ -59,7 +59,7 @@ export class MessageDetailPage extends BasePage {
         let from = res.extras.from;
         let img = res.extras.img;
         let content = res.extras.content;
-        let message = new ChatPageModel(content, img ? "1" : "2", "", img, from, this.loginUid);
+        let message = new ChatPageModel(content, img ? "1" : "2", "", img, from, this.user.id);
         this.msgList.push(message);
         this.ref.detectChanges();
         setTimeout(function () {
