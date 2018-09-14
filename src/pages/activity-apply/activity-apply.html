@@ -29,6 +29,13 @@
                 <ion-icon name="ios-clock-outline"> {{activity.beginDate | date:"yyyy-MM-dd" }} - {{activity.endDate | date:"yyyy-MM-dd"}}</ion-icon><br>
                 <ion-icon name="ios-locate-outline" > {{activity.address}}</ion-icon>
               </div>
+              <div>
+              <ion-buttons >
+                  <button ion-button (click)="deleteApply(activity.id)">
+                    退出报名
+                  </button>
+              </ion-buttons>
+            </div>
             </ion-item>
           </ion-list>
 </div>

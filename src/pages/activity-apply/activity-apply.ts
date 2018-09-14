@@ -37,5 +37,12 @@ export class ActivityApplyPage {
       self.activityList = data;
     })
   }
+  
+  deleteApply(id){
+    this.http.postNotLoading(ServiceConfig.DELETEAPPLYACTIVITY, {
+      type:"a"
+    }, function(data){
 
+    })
+  }
 }

@@ -4,9 +4,47 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-header>
+  <ion-navbar style="opacity: 0.8" no-border-bottom color="primary">
+    <ion-title>活动详情</ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content>
-  <div class="flex">
-    <button>返回</button>
-    <ion-icon name="md-share"></ion-icon>
-  </div>
+  <ion-row>
+    <ion-col>
+      <img [src]="phtotUrl + activity.coverPhoto" >
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-list-header>
+      <h1>{{activity.title}}</h1>
+    </ion-list-header>
+
+    <ion-item>
+      <div class="svg"><img src="././assets/imgs/date.svg">{{activity.beginDate | date:'MM-dd'}} - {{activity.endDate | date:'MM-dd'}}</div>
+    </ion-item>
+    <ion-item>
+      <div class="svg"><img src="././assets/imgs/address.svg">{{activity.address}}</div>
+    </ion-item>
+    <ion-item>
+      <div class="svg"><img src="././assets/imgs/user.svg">{{activity.userNum}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="logo-usd" style="color:bisque"></ion-icon>&nbsp;&nbsp;{{activity.minPricePoint}}-{{activity.maxPricePoint}}/天
+    </ion-item>
+  </ion-list>
+  <ion-card [innerHTML]= activity.content>
+  </ion-card>
+  
 </ion-content>
+<ion-footer>
+    <ion-toolbar [ngSwitch]="collectedStatus"[ngSwitch]="collectedStatus">
+        <ion-icon *ngSwitchCase="false" name="star-outline" (click)="collected(activity.id)">收藏</ion-icon>
+        <ion-icon *ngSwitchCase="true"  name="ios-star"  >已收藏</ion-icon>
+        <ion-icon  name="logo-whatsapp" style="margin-left: 8rem;">联系领队</ion-icon>
+        <a [ngSwitch]="apply">
+          <ion-icon  *ngSwitchCase="false" ios="ios-hand-outline" style="margin-left: 8rem;"md="md-hand" (click)="applyActivity(activity.id)">报名</ion-icon>
+          <ion-icon *ngSwitchCase="true" ios="ios-hand" style="margin-left: 7rem;"md="md-hand">已报名</ion-icon>
+        </a>
+    </ion-toolbar>
+  </ion-footer>

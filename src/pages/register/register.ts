@@ -4,6 +4,7 @@ import { BasePage } from "../base/base-page";
 import { Storage } from '@ionic/storage';
 import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config'
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the RegisterPage page.
@@ -43,6 +44,7 @@ export class RegisterPage extends BasePage {
     public http: HttpClientUtil
   ) {
     super();
+   
   }
 
   ionViewDidLoad() {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config';
 
@@ -33,7 +33,7 @@ export class ActivityCollectionPage {
   getActivityList() {
     let self = this;
     this.http.postNotLoading(ServiceConfig.APPLYACTIVITYLIST, {
-      type:"s"
+       type:"s"
     }, function(data){
       self.activityList = data;
     })

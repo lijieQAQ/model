@@ -41,8 +41,8 @@
       </div>
     </div>
     <ion-list>
-      <ng-container *ngFor="let activity of activityList | activityListPipe : date : price | activityListSortPipe : orderByType">
-        <ion-item *ngIf="active_type == '' || activity.type == active_type">
+      <ng-container *ngFor="let activity of activityList | activityListPipe : date : price | activityListSortPipe : orderByType" >
+        <ion-item *ngIf="active_type == '' || activity.type == active_type" (click)="activityDetail(activity.id)">
           <ion-thumbnail item-start>
             <img [src]="phtotUrl + activity.coverPhoto">
           </ion-thumbnail>

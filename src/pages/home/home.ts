@@ -3,6 +3,7 @@ import { NavController, PopoverController, ActionSheetController } from 'ionic-a
 import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config';
 import { MySelectComponent  } from '../../components/my-select/my-select';
+import{ActivityDetailPage} from '../../pages/activity-detail/activity-detail'
 
 @Component({
   selector: 'page-home',
@@ -25,6 +26,7 @@ export class HomePage {
   }
   ionViewDidEnter() {
     this.getCarouselList();
+    this.activityList=[];
     this.getActivityList();
   }
   presentActionSheetType() {
@@ -181,5 +183,8 @@ export class HomePage {
         console.log(self.carouselList)
       }
     })
+  }
+  activityDetail(id){
+    this.navCtrl.push(ActivityDetailPage,{id:id});
   }
 }

@@ -28,4 +28,8 @@ export class ServiceConfig {
   public static LOGIN ="login/userLogin"//登陆
   public static REGISTER ="login/register"//注册
   public static CHECKPHONE ="login/checkphone"//验证电话号
+  public static GETACTIVITYBYID = "model/getActivityById"//根据id获取活动
+  public static COLLECTEDACTIVITY = "model/collectedActivity" //收藏活动
+  public static FINDACTIVITYSTATUS = "model/findActivityStatus"//查看此活动是否已经报名，收藏
+  public static DELETEAPPLYACTIVITY ="model/deleteApplyActivity"
 }
