@@ -42,6 +42,7 @@
         "cordova-plugin-jcore": "^1.2.3",
         "cordova-plugin-media-capture": "^3.0.2",
         "cordova-plugin-splashscreen": "^5.0.2",
+        "cordova-plugin-wechat": "^2.1.0",
         "cordova-plugin-whitelist": "^1.3.3",
         "ionic-angular": "3.9.2",
         "ionic2-jpush": "^0.1.1",
@@ -71,7 +72,7 @@
             "jpush-phonegap-plugin": {
                 "APP_KEY": "6c98d45aac330b9fda9cce4a"
             },
-            "cordova-plugin-wechatv2": {
+            "cordova-plugin-wechat": {
                 "WECHATAPPID": "wx8dffad2bbf33aa5b"
             }
         },

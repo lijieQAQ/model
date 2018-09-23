@@ -35,13 +35,13 @@
   </ion-list>
   <ion-card [innerHTML]= activity.content>
   </ion-card>
-  
+
 </ion-content>
 <ion-footer>
     <ion-toolbar [ngSwitch]="collectedStatus"[ngSwitch]="collectedStatus">
         <ion-icon *ngSwitchCase="false" name="star-outline" (click)="collected(activity.id)">收藏</ion-icon>
         <ion-icon *ngSwitchCase="true"  name="ios-star"  >已收藏</ion-icon>
-        <ion-icon  name="logo-whatsapp" style="margin-left: 8rem;">联系领队</ion-icon>
+        <ion-icon  name="logo-whatsapp" style="margin-left: 8rem;" (click)="contactLeader()">联系领队</ion-icon>
         <a [ngSwitch]="apply">
           <ion-icon  *ngSwitchCase="false" ios="ios-hand-outline" style="margin-left: 8rem;"md="md-hand" (click)="applyActivity(activity.id)">报名</ion-icon>
           <ion-icon *ngSwitchCase="true" ios="ios-hand" style="margin-left: 7rem;"md="md-hand">已报名</ion-icon>

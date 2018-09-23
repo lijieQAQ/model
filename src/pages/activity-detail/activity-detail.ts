@@ -4,6 +4,7 @@ import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config';
 import {Storage} from '@ionic/storage';
 import { BasePage } from "../base/base-page";
+import {MessageDetailPage} from "../messageDetail/messageDetail";
 /**
  * Generated class for the ActivityDetailPage page.
  *
@@ -17,19 +18,20 @@ import { BasePage } from "../base/base-page";
 })
 export class ActivityDetailPage extends BasePage {
   id:any;
+  userId: string;
   activity={
     id:"",
-    type:"", 
-    name:"", 
+    type:"",
+    name:"",
     title:"",
-    introduction:"", 
-    content:"", 
-    minPricePoint:"", 
+    introduction:"",
+    content:"",
+    minPricePoint:"",
     maxPricePoint:"",
-    isCarousel:"", 
-    coverPhoto:"", 
-    beginDate:"", 
-    endDate:"", 
+    isCarousel:"",
+    coverPhoto:"",
+    beginDate:"",
+    endDate:"",
     createDate:""
   };
   phtotUrl:String="";
@@ -43,9 +45,10 @@ export class ActivityDetailPage extends BasePage {
     this.http.postNotLoading(ServiceConfig.GETACTIVITYBYID, {
      id:this.id
     }, function(data){
-      self.activity =data; 
+      self.activity =data;
       self.storage.get("user").then(user => {
         let staffId = user.id;
+        this.userId = user.id;
         self.http.postNotLoading(ServiceConfig.FINDACTIVITYSTATUS, {
           activityId:self.id,
           staffId:staffId
@@ -58,10 +61,10 @@ export class ActivityDetailPage extends BasePage {
              }
          })
       })
-     
+
     })
 
-    
+
   }
 
   ionViewDidLoad() {
@@ -70,7 +73,7 @@ export class ActivityDetailPage extends BasePage {
   goBack(){
     this.viewCtrl.dismiss();
   }
-  
+
   collected(id){
     let self =this;
     this.storage.get("user").then(e => {
@@ -105,6 +108,10 @@ export class ActivityDetailPage extends BasePage {
        })
 
     });
+  }
+  // 联系领队
+  contactLeader() {
+    this.navCtrl.push(MessageDetailPage, {messge: {user1: this.userId, user2: 2}})
   }
 
 }
