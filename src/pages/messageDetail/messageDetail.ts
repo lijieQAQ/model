@@ -43,27 +43,25 @@ export class MessageDetailPage extends BasePage {
               private storage: Storage) {
     super();
     platform.ready().then(() => {
-
+      let self = this;
       jpush.receiveNotification().subscribe(res => {
-        let from = res.extras.from;
-        let img = res.extras.img;
-        let content = res.extras.content;
-        let message = new ChatPageModel(content, img ? "1" : "2", "", img, from, this.user.id);
+        let from = this.msg.user1;
+        let content = res.alert;
+        let message = new ChatPageModel(content, "1", "", '', from, this.msg.user2);
         this.msgList.push(message);
         this.ref.detectChanges();
         setTimeout(function () {
-          this.content.scrollToBottom();
+          self.content.scrollToBottom();
         }, 100);
       })
       jpush.receiveMessage().subscribe(res => {
-        let from = res.extras.from;
-        let img = res.extras.img;
-        let content = res.extras.content;
-        let message = new ChatPageModel(content, img ? "1" : "2", "", img, from, this.user.id);
+        let from = this.msg.user1;
+        let content = res.alert;
+        let message = new ChatPageModel(content,  "1", "", '', from, this.msg.user2);
         this.msgList.push(message);
         this.ref.detectChanges();
         setTimeout(function () {
-          this.content.scrollToBottom();
+          self.content.scrollToBottom();
         }, 100);
       })
     })
@@ -83,7 +81,7 @@ export class MessageDetailPage extends BasePage {
     }
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     var self = this;
     this.msgList = [];
     setTimeout(function () {
@@ -158,7 +156,7 @@ export class MessageDetailPage extends BasePage {
       speaker: this.user.id,
       user1: this.msg.user1,
       user2: this.msg.user2,
-      message: message.content,
+      content: message.content,
     }, function (data) {
       self.message = null;
       self.ref.detectChanges();
@@ -180,6 +178,7 @@ export class MessageDetailPage extends BasePage {
       for(let d of data) {
         console.log(this.loginUid)
         this.msgList.push(new ChatPageModel(d.message, '2', d.sendTime, '', d.speaker == d.user1 ? d.user1: d.user2, d.speaker == d.user1 ? d.user2: d.user1));
+        this.content.scrollToBottom();
       }
 
     })

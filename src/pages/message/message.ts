@@ -20,7 +20,7 @@ export class MessagePage extends BasePage {
     super();
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.storage.get('user').then(e => {
       if (e) {
         this.user = e;
@@ -35,7 +35,17 @@ export class MessagePage extends BasePage {
     this.http.post(ServiceConfig.GETMSGLIST, {
       userId: this.user.id,
     }, (data)=>{
-      this.msgs = data[0];
+      for(let d of data[0]) {
+        let status = false;
+        for(let msg of this.msgs) {
+          if(msg.user1 == d.user2 && msg.user2 == d.user1) {
+            status = true;
+          }
+        }
+        if (!status) {
+          this.msgs.push(d);
+        }
+      }
     })
   }
   goDeatil(item) {

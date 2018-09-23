@@ -12,10 +12,22 @@ export class WechatPlugin {
       });
     });
   }
-  public static share() {
+  public static shareText(content) {
     return new Promise((resolve, reject) => {
       Wechat.share({
-        text: "This is just a plain string",
+        text: content,
+        scene: Wechat.Scene.TIMELINE   // share to Timeline
+      }, result => {
+        resolve(result);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+  public static shareMedia(message) {
+    return new Promise((resolve, reject) => {
+      Wechat.share({
+        message: message,
         scene: Wechat.Scene.TIMELINE   // share to Timeline
       }, result => {
         resolve(result);

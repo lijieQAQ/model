@@ -47,9 +47,9 @@ export class LoginPage extends BasePage {
     this.http.postNotLoading(ServiceConfig.LOGIN, {mobile: value.mobile, password: value.password}, function (data) {
       if (data != null) {
         self.storage.set('user', data);
-        this.jpush.init()
+        self.jpush.init()
           .then(res => {
-            this.jpush.setAlias(data.id)
+            self.jpush.setAlias(data.id)
               .then((res) => {
                 console.log(res);
             }).catch((err) => {

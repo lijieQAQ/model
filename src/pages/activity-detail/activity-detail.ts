@@ -5,6 +5,8 @@ import { ServiceConfig } from '../../providers/service.config';
 import {Storage} from '@ionic/storage';
 import { BasePage } from "../base/base-page";
 import {MessageDetailPage} from "../messageDetail/messageDetail";
+import {WechatPlugin} from '../../providers/wechat.plugin';
+
 /**
  * Generated class for the ActivityDetailPage page.
  *
@@ -48,7 +50,7 @@ export class ActivityDetailPage extends BasePage {
       self.activity =data;
       self.storage.get("user").then(user => {
         let staffId = user.id;
-        this.userId = user.id;
+        self.userId = user.id;
         self.http.postNotLoading(ServiceConfig.FINDACTIVITYSTATUS, {
           activityId:self.id,
           staffId:staffId
@@ -111,7 +113,27 @@ export class ActivityDetailPage extends BasePage {
   }
   // 联系领队
   contactLeader() {
-    this.navCtrl.push(MessageDetailPage, {messge: {user1: this.userId, user2: 2}})
+    this.navCtrl.push(MessageDetailPage, {message: {user1: this.userId, user2: 2}})
+  }
+  share() {
+    WechatPlugin.isInstalled().then( (data)=> {
+      WechatPlugin.shareText(this.activity.title).then( (data)=> {
+        alert(JSON.stringify(data));
+      });
+    });
+    // WechatPlugin.isInstalled().then( (data)=> {
+    //   WechatPlugin.shareMedia({
+    //     title: "Hi, there",
+    //       description: "This is description.",
+    //       thumb: "www/img/thumbnail.png",
+    //       mediaTagName: "TEST-TAG-001",
+    //       messageExt: "这是第三方带的测试字段",
+    //       messageAction: "<action>dotalist</action>",
+    //       media: "YOUR_MEDIA_OBJECT_HERE"
+    //   }).then( (data)=> {
+    //     alert(JSON.stringify(data));
+    //   });
+    // });
   }
 
 }

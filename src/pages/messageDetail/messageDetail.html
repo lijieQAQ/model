@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>和{{msgList.length == 0 ? '领队' : nickname}}聊天中</ion-title>
+    <ion-title>和{{msg?.speaker == msg?.user1 ? msg?.userName2 : msg?.userName1}}聊天中</ion-title>
   </ion-navbar>
 
 </ion-header>
