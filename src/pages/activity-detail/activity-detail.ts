@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController,ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController,ToastController,AlertController} from 'ionic-angular';
 import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config';
 import {Storage} from '@ionic/storage';
@@ -39,7 +39,8 @@ export class ActivityDetailPage extends BasePage {
   phtotUrl:String="";
   collectedStatus:boolean=false;
   apply:boolean=false;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,public http: HttpClientUtil,private storage: Storage,public toastCtrl: ToastController) {
+  applyNum:number;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,public http: HttpClientUtil,private storage: Storage,public toastCtrl: ToastController,public alertCtrl: AlertController) {
     super();
     this.id = navParams.get('id');
     this.phtotUrl = ServiceConfig.getUrl();
@@ -58,13 +59,25 @@ export class ActivityDetailPage extends BasePage {
              if(data.status=="success"){
               self.collectedStatus = data.data.collected;
               self.apply = data.data.apply;
-              console.log(typeof(self.collectedStatus));
-              console.log((typeof(self.apply)));
+              self.http.postNotLoading(ServiceConfig.FINDAPPLYNUM, {
+                activityId:self.id
+               }, function(data){
+                    self.applyNum = data;
+              })
              }
          })
       })
 
     })
+
+    
+
+
+    this.http.postNotLoading(ServiceConfig.UPDATEACTLOOK, {
+      activityId:self.id
+     }, function(data){
+     })
+ 
 
 
   }
@@ -83,7 +96,8 @@ export class ActivityDetailPage extends BasePage {
       this.http.postNotLoading(ServiceConfig.COLLECTEDACTIVITY, {
         activityId:this.id,
         activitytype:"s",
-        staffId:staffId
+        staffId:staffId,
+        status:"1"
        }, function(data){
         if(data.status == 'success') {
           self.collectedStatus = true;
@@ -98,16 +112,39 @@ export class ActivityDetailPage extends BasePage {
     let self =this;
     this.storage.get("user").then(e => {
       let staffId = e['id'];
-      this.http.postNotLoading(ServiceConfig.COLLECTEDACTIVITY, {
-        activityId:this.id,
-        activitytype:"a",
+      this.http.postNotLoading(ServiceConfig.FINDSTAFFPIC, {
         staffId:staffId
        }, function(data){
-        if(data.status == 'success') {
-          self.apply = true;
-          self.showToastText(self.toastCtrl, "报名成功");
+        if(data.status == 'fail'){
+          const confirm = self.alertCtrl.create({
+            title: '',
+            message: '请上传素颜，带妆，全身照片，模卡',
+            buttons: [
+              {
+                text: '确定',
+                handler: () => {
+                 
+                }
+              }
+            ]
+          });
+          confirm.present();
+        }else{
+          self.http.postNotLoading(ServiceConfig.COLLECTEDACTIVITY, {
+            activityId:self.id,
+            activitytype:"a",
+            staffId:staffId
+          }, function(data){
+            if(data.status == 'success') {
+              self.apply = true;
+              self.showToastText(self.toastCtrl, "报名成功");
+            }
+          })
         }
+      
        })
+
+
 
     });
   }

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>活动收藏</ion-title>
+    <ion-title>收藏活动</ion-title>
   </ion-navbar>
 
 
@@ -15,26 +15,34 @@
 
 
 <ion-content>
-  <div>
-    <ion-list class="list-bottom">
-      <ion-item *ngFor="let activity of activityList">
-        <ion-thumbnail item-start>
-          <img [src]="phtotUrl + activity.coverPhoto">
-        </ion-thumbnail>
-        <h2>{{activity.title}}</h2>
-        <div>
-          <ion-icon name="logo-usd" style="color:bisque"></ion-icon>&nbsp;&nbsp;{{activity.minPricePoint}}-{{activity.maxPricePoint}}/天
-        </div>
-        <div>
-          <div>
-            <ion-icon name="person" class="divico">&nbsp;{{activity.userNum}}人</ion-icon>
-            <br>
-          </div>
-          <ion-icon name="ios-clock-outline"> {{activity.beginDate | date:"yyyy-MM-dd" }} - {{activity.endDate | date:"yyyy-MM-dd"}}</ion-icon>
-          <br>
-          <ion-icon name="ios-locate-outline"> {{activity.address}}</ion-icon>
-        </div>
-      </ion-item>
-    </ion-list>
-  </div>
-</ion-content>
+  <div class="listContent">
+     <ion-list>
+       <ng-container *ngFor="let activity of activityList ">
+         <ion-item  (click)="activityDetail(activity.id)">
+           <ion-thumbnail item-start>
+             <img style="width: 56px" [src]="phtotUrl + activity.coverPhoto">
+           </ion-thumbnail>
+           <h2>{{activity.title}}</h2>
+           <div class="itemInfo">
+             <div class="itemInfo1">
+               <div><img src="././assets/imgs/user.svg">{{activity.userNum}}</div>
+               <div><img src="././assets/imgs/date.svg">{{activity.beginDate | dateToStringPipe: 'yyyy-MM/dd'}} -
+                 {{activity.endDate | dateToStringPipe: 'yyyy-MM/dd'}}</div>
+               <div><img src="././assets/imgs/address.svg"><span style="max-width: 11rem;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{activity.address}}</span></div>
+             </div>
+             <div class="itemInfo2">
+               <div><img src="././assets/imgs/money.svg">{{activity.minPricePoint}}-{{activity.maxPricePoint}}/天</div>
+               <div><img src="././assets/imgs/eye.svg">{{activity.lookNum}}</div>
+             </div>
+           </div>
+         </ion-item>
+         
+       </ng-container>
+     </ion-list>
+   </div>
+    
+     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+       <ion-infinite-scroll-content></ion-infinite-scroll-content>
+     </ion-infinite-scroll>
+    
+ </ion-content>

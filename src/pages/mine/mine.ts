@@ -8,14 +8,21 @@ import{ActivityTakePartInPage} from '../activity-take-part-in/activity-take-part
 import{ActivityEvaluatePage} from '../activity-evaluate/activity-evaluate';
 import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config';
+import { WechatPlugin } from '../../providers/wechat.plugin';
+import{ConfigsetPage} from "../../pages/configset/configset";
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'page-mine',
   templateUrl: 'mine.html'
 })
 export class MinePage {
-
-  constructor(public navCtrl: NavController) {
+  user={};
+  constructor(public navCtrl: NavController,private storage: Storage) {
+    this.storage.get('user').then(e => {
+      Object.assign(this.user, e);
+      console.log(this.user);
+    })
   }
   goToPage(){
      this.navCtrl.push(PersonInformationPage);
@@ -38,6 +45,9 @@ goToTakePartInPage(){
 
 goToEvaluatePage(){
   this.navCtrl.push(ActivityEvaluatePage);
+}
+toSetConfig(){
+  this.navCtrl.push(ConfigsetPage);
 }
 
 

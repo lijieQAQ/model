@@ -34,6 +34,7 @@ page-home {
           width: 90%;
           height: 2.5rem;
           margin-top: .25rem;
+          margin-left: 0.25rem;
           border: 1px solid #acacac;
         }
       }
@@ -85,13 +86,16 @@ page-home {
         align-items: center;
         .itemInfo1 {
           flex: 0.5;
-
+         
           div {
+            display: flex;
+            align-items: center;
             margin-top: .5rem;
           }
         }
         .itemInfo2 {
           flex: 0.5;
+          
           div {
             margin-top: .5rem;
           }

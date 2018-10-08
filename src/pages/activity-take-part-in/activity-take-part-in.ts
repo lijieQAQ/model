@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HttpClientUtil } from '../../providers/HttpClientUtil';
 import { ServiceConfig } from '../../providers/service.config';
+import { Storage } from '@ionic/storage'
+import { ActivityDetailPage } from '../../pages/activity-detail/activity-detail'
 
 /**
  * Generated class for the ActivityTakePartInPage page.
@@ -16,12 +18,12 @@ import { ServiceConfig } from '../../providers/service.config';
 })
 export class ActivityTakePartInPage {
 
-  activityList =[];
+  activityList = [];
   phtotUrl = "";
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http: HttpClientUtil) {
+  pageNumber: number = 0;
+  length: number = 1;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClientUtil, public storage: Storage) {
     this.phtotUrl = ServiceConfig.getUrl();
-  }
-  ionViewDidEnter() {
     this.getActivityList();
   }
 
@@ -29,13 +31,46 @@ export class ActivityTakePartInPage {
     console.log('ionViewDidLoad ActivityApplyPage');
   }
 
-  getActivityList() {
+  getActivityList(): Promise<any>  {
     let self = this;
-    this.http.postNotLoading(ServiceConfig.APPLYACTIVITYLIST, {
-      type:"dc"
-    }, function(data){
-      self.activityList = data;
+    return new Promise((resolve) => {
+    this.storage.get("user").then(user=>{
+      this.http.postNotLoading(ServiceConfig.APPLYACTIVITYLIST, {
+        staffId:user.id,
+        type:"dc",
+        pageNumber: this.pageNumber,
+        pageSize: ServiceConfig.PAGESIZE
+      }, function(data){
+        if(data.status == 'success') {
+          if(data.data.content.length > 0) {
+            for(let d of data.data.content) {
+              self.activityList.push(d);
+            }
+          }else{
+              self.length = 0
+          }
+        }
+        resolve();
+      })
     })
+  })
+   
+  }
+
+  activityDetail(id) {
+    this.navCtrl.push(ActivityDetailPage, { id: id });
+  }
+
+  doInfinite(infiniteScroll) {
+    if (this.length != 0) {
+      this.pageNumber = this.pageNumber + 1;
+      this.getActivityList().then(data => {
+        infiniteScroll.complete();
+      })
+    } else {
+      infiniteScroll.enable(false);
+    }
+
   }
 
 }

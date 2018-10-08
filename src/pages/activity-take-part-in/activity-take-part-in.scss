@@ -1,11 +1,59 @@
 page-activity-take-part-in {
-    .list-bottom{
-        margin-bottom: 0px
-    }
-    .divico{
-        margin-left: 0.1rem;
-    }
-    .item-ios h2 {
-        font-size:3.0rem;
-    }
+    .listContent {
+        .sortList {
+          display: flex;
+          .selectContent {
+            width: 23%;
+            margin: 0 1%;
+            padding: 1rem 0;
+            text-align: center;
+            span {
+              margin-right: 1rem;
+            }
+          }
+        }
+        ion-thumbnail {
+          img {
+            width: 8rem;
+            height: 5.6rem;
+          }
+        }
+        .item {
+          align-items: center;
+          .label {
+            margin-left: 1rem;
+          }
+          img {
+            width: 2rem;
+          }
+          .itemInfo {
+            display: flex;
+            flex: 1;
+            font-size: 1.4rem;
+            color: #999;
+            align-items: center;
+            .itemInfo1 {
+              flex: 0.5;
+             
+              div {
+                display: flex;
+                align-items: center;
+                margin-top: .5rem;
+              }
+            }
+            .itemInfo2 {
+              flex: 0.5;
+              
+              div {
+                margin-top: .5rem;
+              }
+              div:first-child {
+                font-size: 2rem;
+                color: #ff8601;
+                margin-bottom: .8rem;
+              }
+            }
+          }
+        }
+      }
 }

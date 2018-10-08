@@ -7,7 +7,7 @@ export class ServiceConfig {
     public static getUrl() {
         if (this.ISDEBUG) {
             //测试环境URL
-            return "http://192.168.43.174:8081/";
+            return "http://127.0.0.1:8081/";
         } else {
             //生产环境URL
             return "http://222.223.193.205:28084/";
@@ -32,4 +32,9 @@ export class ServiceConfig {
   public static COLLECTEDACTIVITY = "model/collectedActivity" //收藏活动
   public static FINDACTIVITYSTATUS = "model/findActivityStatus"//查看此活动是否已经报名，收藏
   public static DELETEAPPLYACTIVITY ="model/deleteApplyActivity"
+  public static EVALUATE ="model/evaluate"//评价领队
+  public static EVALUATEACTIVITY="model/getEvaActivityById"
+  public static FINDSTAFFPIC="model/findStaffPic"
+  public static UPDATEACTLOOK="model/updateActLook"
+  public static FINDAPPLYNUM="model/findApplyNum"
 }

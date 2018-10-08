@@ -1,10 +1,10 @@
 <ion-content>
   <div class="headerContent">
-    <ion-icon name="ios-settings"></ion-icon>
-    <img src="././assets/imgs/logo.png">
-    <div class="name">111</div>
+    <ion-icon name="ios-settings" (click)="toSetConfig()"></ion-icon>
+    <img [src]="user.avatar">
+    <div class="name">{{user.name }}</div>
     <div class="info">
-      <span>注册时间: 1111</span>
+      <span>注册时间: {{user.creatdate |date:"yyyy-MM-dd"}}</span>
     </div>
   </div>
   <ion-grid>

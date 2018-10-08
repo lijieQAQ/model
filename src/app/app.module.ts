@@ -24,6 +24,8 @@ import { RegisterPage } from "../pages/register/register"
 import { MySelectComponent } from "../components/my-select/my-select"
 import { ActivityDetailPage } from "../pages/activity-detail/activity-detail"
 import { ImageCheckPage } from "../pages/image-check/image-check"
+import { EvaluateLeaderPage } from "../pages/evaluate-leader/evaluate-leader"
+import{ConfigsetPage} from"../pages/configset/configset"
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -56,7 +58,9 @@ import { WechatPlugin } from '../providers/wechat.plugin';
     MySelectComponent,
     RegisterPage,
     ImageCheckPage,
-    ActivityDetailPage
+    ActivityDetailPage,
+    ConfigsetPage,
+    EvaluateLeaderPage
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,9 @@ import { WechatPlugin } from '../providers/wechat.plugin';
     MySelectComponent,
     RegisterPage,
     ImageCheckPage,
-    ActivityDetailPage
+    ActivityDetailPage,
+    ConfigsetPage,
+    EvaluateLeaderPage
   ],
   providers: [
     StatusBar,

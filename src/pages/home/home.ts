@@ -18,6 +18,7 @@ export class HomePage {
   date: string = '';
   price: string = '';
   orderByType: string = '';
+  length:number = 1;
   constructor(public navCtrl: NavController,
                 public http: HttpClientUtil,
                 public actionSheetCtrl: ActionSheetController,
@@ -167,8 +168,9 @@ export class HomePage {
       }
     })
   }
-  getActivityList() {
+  getActivityList():Promise<any> {
     let self = this;
+    return new Promise((resolve) => {
     this.http.postNotLoading(ServiceConfig.GETACTIVITYLIST, {
       pageNumber: this.pageNumber,
       isCarousel: '0',
@@ -179,12 +181,27 @@ export class HomePage {
           for(let d of data.data.content) {
             self.activityList.push(d);
           }
+        }else{
+          self.length = 0
         }
         console.log(self.carouselList)
+        resolve();
       }
+    })
     })
   }
   activityDetail(id){
     this.navCtrl.push(ActivityDetailPage,{id:id});
   }
+
+  doInfinite(infiniteScroll) {
+    if (this.length!=0) {
+      this.pageNumber = this.pageNumber+1;
+      this.getActivityList().then(data=>{
+        infiniteScroll.complete();
+      })
+    }else{
+      infiniteScroll.enable(false);
+    }
+}
 }
