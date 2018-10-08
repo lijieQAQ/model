@@ -26,6 +26,7 @@ export class HomePage {
     this.phtotUrl = ServiceConfig.getUrl();
   }
   ionViewDidEnter() {
+    this.pageNumber = 0;
     this.getCarouselList();
     this.activityList=[];
     this.getActivityList();
